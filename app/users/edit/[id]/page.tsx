@@ -3,14 +3,16 @@ import { prisma } from '@/lib/prisma'
 import UserForm from '@/app/components/UserForm'
 
 interface EditUserPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function EditUserPage({ params }: EditUserPageProps) {
+  const { id } = await params
+  
   const user = await prisma.user.findUnique({
-    where: { id: params.id }
+    where: { id }
   })
 
   if (!user) {
