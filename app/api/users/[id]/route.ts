@@ -5,11 +5,13 @@ import { UpdateUserInput } from '@/types'
 // GET - Mendapatkan user berdasarkan ID
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params
+    
     const user = await prisma.user.findUnique({
-      where: { id: context.params.id }
+      where: { id }
     })
 
     if (!user) {
@@ -32,13 +34,14 @@ export async function GET(
 // PUT - Update user
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params
     const body: UpdateUserInput = await request.json()
 
     const user = await prisma.user.update({
-      where: { id: context.params.id },
+      where: { id },
       data: {
         ...(body.name && { name: body.name }),
         ...(body.email && { email: body.email }),
@@ -80,11 +83,13 @@ export async function PUT(
 // DELETE - Hapus user
 export async function DELETE(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params
+    
     const user = await prisma.user.delete({
-      where: { id: context.params.id }
+      where: { id }
     })
 
     return NextResponse.json(user)
