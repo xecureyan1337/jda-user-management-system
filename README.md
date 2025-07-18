@@ -1,36 +1,174 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# User Management System
 
-## Getting Started
+Aplikasi manajemen pengguna yang dibangun dengan teknologi modern untuk mengelola data user dengan fitur CRUD lengkap.
 
-First, run the development server:
+## 🚀 Fitur Utama
 
+### ✅ CRUD Lengkap
+- **Create**: Menambah user baru dengan form validasi
+- **Read**: Menampilkan semua user dalam tabel responsif
+- **Update**: Edit data user yang sudah ada
+- **Delete**: Hapus user dengan konfirmasi
+
+### ✅ Teknologi yang Digunakan
+- **Next.js 15** dengan App Router
+- **TypeScript** untuk type safety
+- **Tailwind CSS** untuk styling modern
+- **Prisma ORM** untuk database management
+- **Neon PostgreSQL** sebagai database
+
+### ✅ Fitur Tambahan
+- Form validasi dengan error handling
+- Loading states untuk UX yang lebih baik
+- Responsive design untuk mobile dan desktop
+- Soft delete dengan konfirmasi
+- Auto-refresh setelah operasi CRUD
+
+## 📋 Prasyarat
+
+Sebelum memulai, pastikan Anda memiliki:
+- Node.js (versi 18 atau lebih tinggi)
+- npm atau yarn atau pnpm
+- Akun Neon PostgreSQL
+
+## 🛠️ Instalasi
+
+1. **Clone repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd user-management-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies**
+```bash
+npm install
+# atau
+yarn install
+# atau
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Setup Environment Variables**
+Buat file `.env.local` di root directory dan tambahkan:
+```env
+DATABASE_URL="your-neon-postgresql-connection-string"
+NEXTAUTH_SECRET="your-secret-key"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Setup Database**
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-## Learn More
+5. **Jalankan aplikasi**
+```bash
+npm run dev
+# atau
+yarn dev
+# atau
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Aplikasi akan berjalan di [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🗂️ Struktur Project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+user-management-app/
+├── app/
+│   ├── api/
+│   │   └── users/
+│   ├── components/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── prisma/
+│   └── schema.prisma
+├── public/
+├── .env.local
+├── package.json
+└── README.md
+```
 
-## Deploy on Vercel
+## 📱 Penggunaan
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Menambah User Baru
+1. Klik tombol "Add User" atau "Tambah User"
+2. Isi form dengan data yang valid
+3. Klik "Save" untuk menyimpan
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Mengedit User
+1. Klik tombol "Edit" pada user yang ingin diubah
+2. Ubah data yang diperlukan
+3. Klik "Update" untuk menyimpan perubahan
+
+### Menghapus User
+1. Klik tombol "Delete" pada user yang ingin dihapus
+2. Konfirmasi penghapusan pada dialog yang muncul
+3. User akan dihapus dari database
+
+## 🔧 Scripts
+
+```bash
+# Development
+npm run dev
+
+# Build
+npm run build
+
+# Start production
+npm run start
+
+# Type checking
+npm run type-check
+
+# Linting
+npm run lint
+```
+
+## 🛡️ Database Schema
+
+```prisma
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+## 🎨 Styling
+
+Aplikasi menggunakan Tailwind CSS dengan:
+- Responsive design untuk semua ukuran layar
+- Modern UI components
+- Consistent color scheme
+- Hover effects dan transitions
+
+## 🔒 Validasi
+
+- Email format validation
+- Required field validation
+- Duplicate email prevention
+- Client-side dan server-side validation
+
+## 📈 Performance
+
+- Server-side rendering dengan Next.js
+- Optimized database queries dengan Prisma
+- Loading states untuk better UX
+- Auto-refresh data setelah operasi
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` file for more information.
+
+## 📞 Support
+
+Jika Anda mengalami masalah atau memiliki pertanyaan, silakan buat issue di repository ini.
+
+---
+
+**Dibuat dengan ❤️ menggunakan Next.js 15 dan TypeScript 🗿**
