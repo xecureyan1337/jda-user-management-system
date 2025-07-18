@@ -49,10 +49,13 @@ pnpm install
 ```
 
 3. **Setup Environment Variables**
-Buat file `.env.local` di root directory dan tambahkan:
+Buat file `.env` di root directory dan tambahkan:
 ```env
-DATABASE_URL="your-neon-postgresql-connection-string"
-NEXTAUTH_SECRET="your-secret-key"
+# Database
+DATABASE_URL="postgresql://username:password@localhost:5432/mydatabase"
+
+# Untuk production di Vercel, gunakan Neon connection string
+# DATABASE_URL="postgresql://username:password@ep-example.us-east-1.aws.neon.tech/neondb"
 ```
 
 4. **Setup Database**
