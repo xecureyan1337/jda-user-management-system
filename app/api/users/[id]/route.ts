@@ -2,10 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { UpdateUserInput } from '@/types'
 
+interface RouteParams {
+  params: Promise<{ id: string }>
+}
+
 // GET - Mendapatkan user berdasarkan ID
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<{ id: string }> }
+  context: RouteParams
 ) {
   try {
     const { id } = await context.params
@@ -34,7 +38,7 @@ export async function GET(
 // PUT - Update user
 export async function PUT(
   request: NextRequest,
-  context: { params: Promise<{ id: string }> }
+  context: RouteParams
 ) {
   try {
     const { id } = await context.params
@@ -83,7 +87,7 @@ export async function PUT(
 // DELETE - Hapus user
 export async function DELETE(
   request: NextRequest,
-  context: { params: Promise<{ id: string }> }
+  context: RouteParams
 ) {
   try {
     const { id } = await context.params
